@@ -7,15 +7,30 @@
 
 import SwiftUI
 
+struct DataItemModel {
+    let text: String
+    let color: Color
+}
+
 struct ContentView: View {
+    
+    let messages = [
+        DataItemModel(text: "Hello", color: .green),
+        DataItemModel(text: "Hello, there", color: .yellow),
+        DataItemModel(text: "Welcome to Swift programming", color: .red),
+        DataItemModel(text: "Good luck!", color: .purple),
+        DataItemModel(text: "Boom", color: .gray),
+        DataItemModel(text: "Are you ready to explore?", color: .blue)
+    ]
+    
     var body: some View {
         VStack(alignment: .leading) {
-            TextView(text: "Hello!", color: .green)
-            TextView(text: "Hello, there!", color: .yellow)
-            TextView(text: "Welcome to Swift programming!", color: .red)
-            TextView(text: "Good luck!", color: .purple)
-            TextView(text: "Boom!", color: .gray)
-            TextView(text: "Are you ready to explore?", color: .blue)
+            TextView(text: messages[0].text, color: messages[0].color)
+            TextView(text: messages[1].text, color: messages[1].color)
+            TextView(text: messages[2].text, color: messages[2].color)
+            TextView(text: messages[3].text, color: messages[3].color)
+            TextView(text: messages[4].text, color: messages[4].color)
+            TextView(text: messages[5].text, color: messages[5].color)
         }
     }
 }
