@@ -7,30 +7,29 @@
 
 import SwiftUI
 
-struct DataItemModel {
+struct DataItemModel: Identifiable {
+    let id = UUID()
     let text: String
     let color: Color
 }
 
 struct ContentView: View {
-    
-    let messages = [
-        DataItemModel(text: "Hello", color: .green),
-        DataItemModel(text: "Hello, there", color: .yellow),
-        DataItemModel(text: "Welcome to Swift programming", color: .red),
-        DataItemModel(text: "Good luck!", color: .purple),
-        DataItemModel(text: "Boom", color: .gray),
-        DataItemModel(text: "Are you ready to explore?", color: .blue)
-    ]
-    
+ 
     var body: some View {
-        VStack(alignment: .leading) {
-            TextView(text: messages[0].text, color: messages[0].color)
-            TextView(text: messages[1].text, color: messages[1].color)
-            TextView(text: messages[2].text, color: messages[2].color)
-            TextView(text: messages[3].text, color: messages[3].color)
-            TextView(text: messages[4].text, color: messages[4].color)
-            TextView(text: messages[5].text, color: messages[5].color)
+        ZStack {
+            Color.black.opacity(0.2)
+                .ignoresSafeArea()
+            VStack(alignment: .leading) {
+                TitleView()
+                
+                Spacer()
+                
+                MessagesView()
+         
+                Spacer()
+                Spacer()
+
+            }
         }
     }
 }
@@ -54,5 +53,41 @@ struct TextView: View {
                     .fill(color.opacity(0.8))
             )
             .shadow(color: color.opacity(0.4), radius: 5, x: 10, y: 10)
+    }
+}
+
+struct TitleView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Greetings")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Text("Exploring iOS 15 programming")
+                .font(.headline)
+                .fontWeight(.thin)
+        }
+        .padding(.vertical)
+    }
+}
+
+struct MessagesView: View {
+    let messages = [
+        DataItemModel(text: "Hello", color: .green),
+        DataItemModel(text: "Hello, there", color: .yellow),
+        DataItemModel(text: "Welcome to Swift programming", color: .red),
+        DataItemModel(text: "Good luck!", color: .purple),
+        DataItemModel(text: "Boom", color: .gray),
+        DataItemModel(text: "Are you ready to explore?", color: .blue),
+        DataItemModel(text: "You got this!!!", color: .orange)
+    ]
+    
+    var body: some View {
+        ForEach(messages, content: { dataItem in
+            TextView(text: dataItem.text, color: dataItem.color)
+        })
+        
+        //            ForEach(0..<messages.count, content: { index in
+        //                TextView(text: messages[index].text, color: messages[index].color)
+        //            })
     }
 }
