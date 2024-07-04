@@ -14,7 +14,7 @@ struct DataItemModel: Identifiable {
 }
 
 struct ContentView: View {
- 
+    
     var body: some View {
         ZStack {
             BackgroundView()
@@ -24,10 +24,10 @@ struct ContentView: View {
                 Spacer()
                 
                 MessagesView()
-         
+                
                 Spacer()
                 Spacer()
-
+                
             }
         }
     }
@@ -39,7 +39,17 @@ struct ContentView: View {
 
 struct TextView: View {
     let text: String
-    let color: Color
+    @State var color: Color
+    
+    let colors: [Color] = [
+        .red, .green, .blue, .orange,
+        .yellow, .purple,
+        Color(red: 0.5, green: 0, blue: 0.5),
+        Color(red: 0, green: 0.5, blue: 0.5),
+        Color(red: 139/255, green: 207/255, blue: 240/255),
+        Color(red: 1, green: 215/255, blue: 0),
+    ]
+    
     
     var body: some View {
         Text(text)
@@ -52,6 +62,11 @@ struct TextView: View {
                     .fill(color.opacity(0.8))
             )
             .shadow(color: color.opacity(0.4), radius: 5, x: 10, y: 10)
+            .onTapGesture {
+                let length = colors.count
+                let randomIndex = Int.random(in: 0..<length)
+                color = colors[randomIndex]
+            }
     }
 }
 
@@ -94,12 +109,12 @@ struct MessagesView: View {
 struct BackgroundView: View {
     var body: some View {
         LinearGradient(colors: [.blue,
-                                Color(red: 139/255, 
+                                Color(red: 139/255,
                                       green: 80/255,
                                       blue: 240/255)],
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-            .opacity(0.3)
-            .ignoresSafeArea()
+        .opacity(0.3)
+        .ignoresSafeArea()
     }
 }
