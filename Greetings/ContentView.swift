@@ -74,6 +74,14 @@ struct TextView: View {
 
 struct TitleView: View {
     @State var isRotated: Bool = false
+    @State var captionIndex: Int = 0
+    
+    let caption: [String] = [
+        "Exploring iOS 16 programming",
+        "Learning how to bake",
+        "Programming recipes",
+        "A quest for knowledge"
+    ]
     
     var body: some View {
         HStack {
@@ -81,11 +89,14 @@ struct TitleView: View {
                 Text("Greetings")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                Text("Exploring iOS 15 programming")
+                Text(caption[captionIndex])
                     .font(.headline)
                     .fontWeight(.thin)
             }
             .padding()
+            .onTapGesture {
+                captionIndex = Int.random(in: 0..<caption.count)
+            }
             Spacer()
             Circle()
                 .strokeBorder( AngularGradient(gradient: Gradient(
