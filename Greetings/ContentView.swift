@@ -15,6 +15,8 @@ struct DataItemModel: Identifiable {
 
 struct ContentView: View {
     
+    
+    
     var body: some View {
         ZStack {
             BackgroundView()
@@ -71,16 +73,38 @@ struct TextView: View {
 }
 
 struct TitleView: View {
+    @State var isRotated: Bool = false
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Greetings")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            Text("Exploring iOS 15 programming")
-                .font(.headline)
-                .fontWeight(.thin)
+        HStack {
+            VStack(alignment: .leading, spacing: 0.0) {
+                Text("Greetings")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Text("Exploring iOS 15 programming")
+                    .font(.headline)
+                    .fontWeight(.thin)
+            }
+            .padding()
+            Spacer()
+            Circle()
+                .strokeBorder( AngularGradient(gradient: Gradient(
+                    colors: [
+                        .pink, .purple,
+                        .blue, .orange, .yellow]),
+                                               center: .center,
+                                               angle: .zero),
+                               lineWidth: 15
+                )
+                .rotationEffect(isRotated ? .zero : .degrees(360))
+                .frame(maxWidth: 70, maxHeight: 70)
+                .onTapGesture {
+                    withAnimation(Animation.spring()) {
+                        isRotated.toggle()
+                    }
+                }
         }
-        .padding(.vertical)
+        .padding()
     }
 }
 
@@ -96,9 +120,12 @@ struct MessagesView: View {
     ]
     
     var body: some View {
-        ForEach(messages, content: { dataItem in
-            TextView(text: dataItem.text, color: dataItem.color)
-        })
+        VStack(alignment: .leading) {
+            ForEach(messages, content: { dataItem in
+                TextView(text: dataItem.text, color: dataItem.color)
+            })
+        }
+        .padding()
         
         //            ForEach(0..<messages.count, content: { index in
         //                TextView(text: messages[index].text, color: messages[index].color)
