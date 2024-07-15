@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Greetings
+
+  Created by Nazrin Atayeva on 15.07.24.
+  
+*/
+
+"Greetings" = "Приветики!";
+"Exploring iOS 16 programming" = "Изучаем программирование iOS 16";
+"Learning how to bake" = "Учимся печь";
+"Programming recipes" = "Рецепты программирования";
+"A quest for knowledge" = "Квест к изучению";
+"Hello" = "Хеллоуу";
+"Hello, there" = "Всем приветики";
+"Welcome to Swift programming" = "Добро пожаловать в программирование на Swift";
+"Good luck!" = "Удачки";
+"Boom" = "Буум";
+"Are you ready to explore?" = "Готов к исследованию?";
+"You got this!!!" = "Так держать!!!";

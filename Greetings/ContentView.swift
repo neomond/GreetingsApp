@@ -9,13 +9,11 @@ import SwiftUI
 
 struct DataItemModel: Identifiable {
     let id = UUID()
-    let text: String
+    let text: LocalizedStringKey
     let color: Color
 }
 
 struct ContentView: View {
-    
-    
     
     var body: some View {
         ZStack {
@@ -40,7 +38,7 @@ struct ContentView: View {
 }
 
 struct TextView: View {
-    let text: String
+    let text: LocalizedStringKey
     @State var color: Color
     
     let colors: [Color] = [
@@ -76,17 +74,17 @@ struct TitleView: View {
     @State var isRotated: Bool = false
     @State var captionIndex: Int = 0
     
-    let caption: [String] = [
-        "Exploring iOS 16 programming",
-        "Learning how to bake",
-        "Programming recipes",
-        "A quest for knowledge"
+    let caption: [LocalizedStringKey] = [
+       LocalizedStringKey("Exploring iOS 16 programming"),
+       LocalizedStringKey("Learning how to bake"),
+       LocalizedStringKey("Programming recipes"),
+       LocalizedStringKey("A quest for knowledge")
     ]
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 0.0) {
-                Text("Greetings")
+                Text( LocalizedStringKey("Greetings"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 Text(caption[captionIndex])
@@ -121,13 +119,13 @@ struct TitleView: View {
 
 struct MessagesView: View {
     let messages = [
-        DataItemModel(text: "Hello", color: .green),
-        DataItemModel(text: "Hello, there", color: .yellow),
-        DataItemModel(text: "Welcome to Swift programming", color: .red),
-        DataItemModel(text: "Good luck!", color: .purple),
-        DataItemModel(text: "Boom", color: .gray),
-        DataItemModel(text: "Are you ready to explore?", color: .blue),
-        DataItemModel(text: "You got this!!!", color: .orange)
+        DataItemModel(text:  LocalizedStringKey("Hello"), color: .green),
+        DataItemModel(text:  LocalizedStringKey("Hello, there"), color: .yellow),
+        DataItemModel(text:  LocalizedStringKey("Welcome to Swift programming"), color: .red),
+        DataItemModel(text:  LocalizedStringKey("Good luck!"), color: .purple),
+        DataItemModel(text:  LocalizedStringKey("Boom"), color: .gray),
+        DataItemModel(text:  LocalizedStringKey("Are you ready to explore?"), color: .blue),
+        DataItemModel(text:  LocalizedStringKey("You got this!!!"), color: .orange)
     ]
     
     var body: some View {
