@@ -11,19 +11,38 @@ struct MainView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
+    @Binding var language: String
+    @Binding var layoutDirection: LayoutDirection
+    
     var body: some View {
         // Portrait mode ?
         if horizontalSizeClass == .compact && verticalSizeClass == .regular {
             // Portrait mode
-            GreetingsView()
+            NavigationStack {
+                GreetingsView()
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing){
+                            LanguageOptionsView(language: $language, layoutDirection: $layoutDirection)
+                        }
+                    }
+            }
         } else {
             // Landscape mode
-            LandscapeGreetingsView()
+            NavigationStack {
+                LandscapeGreetingsView()
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing){
+                            LanguageOptionsView(language: $language, layoutDirection: $layoutDirection)
+                        }
+                    }
+            }
+            
         }
-       
+        
     }
 }
 
 #Preview {
-    MainView()
+    MainView(language: .constant("en"),
+             layoutDirection: .constant(.leftToRight))
 }
