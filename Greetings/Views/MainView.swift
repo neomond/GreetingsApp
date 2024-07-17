@@ -12,7 +12,7 @@ struct MainView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
     @Binding var language: String
-    @Binding var layoutDirection: LayoutDirection
+    @Binding var layoutDirectionString: String
     
     var body: some View {
         // Portrait mode ?
@@ -22,17 +22,18 @@ struct MainView: View {
                 GreetingsView()
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){
-                            LanguageOptionsView(language: $language, layoutDirection: $layoutDirection)
+                            LanguageOptionsView(language: $language, layoutDirectionString: $layoutDirectionString)
                         }
                     }
             }
+            
         } else {
             // Landscape mode
             NavigationStack {
                 LandscapeGreetingsView()
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){
-                            LanguageOptionsView(language: $language, layoutDirection: $layoutDirection)
+                            LanguageOptionsView(language: $language, layoutDirectionString: $layoutDirectionString)
                         }
                     }
             }
@@ -44,5 +45,5 @@ struct MainView: View {
 
 #Preview {
     MainView(language: .constant("en"),
-             layoutDirection: .constant(.leftToRight))
+             layoutDirectionString: .constant(LEFT_TO_RIGHT))
 }
